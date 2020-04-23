@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="en">
-
   <head>
     {% load static %}
     <meta charset="utf-8">
@@ -9,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    
-    <title>Andrew De Vera</title>
+
+    <title>Andrew's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -23,7 +22,6 @@
 <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
 <link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
 <link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
 <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#563d7c">
 
@@ -57,7 +55,7 @@
     <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" href="http://www.twitter.com/Drew00817">Twitter</a>
       <a class="nav-item nav-link" href="{% static 'AndrewCV2018.pdf' %}">Resume</a>
-      <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+      <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
 
     </div>
   </div>
@@ -65,40 +63,28 @@
 </header>
 
 <main role="main">
+	<div class="container">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hi, I'm Andrew. </h1>
-      <p class="lead text-muted">Hi, My name is Andrew and i love to make django websites. I want to help people who wants to make their own website!</p>
-      <p>
-        <a href="mailto:andrew081791@gmail.com" class="btn btn-primary my-2">Email Me</a>
-      </p>
-      <img src="{% static 'me.jpg' %}" height="300" />
-    </div>
-  </section>
+	 <h1 class="text-center pt-3">Welcome to Drew's Blog</h1>
+	 <br />
+	 <br />
+	 <h2>Latest Posts</h2>
+	 <hr />
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
+	     {% for blog in blogs.all %}
+       	 <a href="{% url 'detail' blog.id %}" ><h3>{{ blog.title }}</h3> </a>
+       	 {{ blog.pub_date_pretty }}
+       	 <br />
+       	 <img class="img-fluid"src="{{ blog.image.url }}" height=200 width=200 />
+       	 <br />
+       	 <p>{{ blog.summary }}</p>
 
 
-        </div>
-      </div>
-    </div>
-  </div>
+         {% endfor %}
+
+	</div>
+
+  
 
 </main>
 
